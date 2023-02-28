@@ -1,12 +1,21 @@
-<<?php
-if(empty($_GET['editar'])){
+<?php
+include('validaradmin.php');
+include('../databases/conexion.php');
+if (empty($_GET['editar'])) {
     header("Location: ../blog/index.php");
     exit;
-}else{
-    $usuario_id = $_GET['editar'];
-    $usuario_nombre = $_GET['nombre'];
-    // echo "no exite";
+} else {
+    $id = $_GET['editar'];
+    $consulta =  $conexion->query("SELECT * FROM usuario WHERE id_usuario= '$id'");
+    if ($consulta->num_rows == 1) {
+        while ($row = $consulta->fetch_assoc()) {
+            $nombre = $row['nombres'];
+            $username = $row['username'];
+            $direccion = $row['direccion'];
+        }
+    }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,55 +24,50 @@ if(empty($_GET['editar'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Usuario</title>
+    <title>Registro User</title>
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
 
 <body style="background: linear-gradient(to right,#5695EC ,#3BEEAF);">
-    <div class="container" style="justify-content: center;">
-    <div class="col-12 text-center">
-        <a class="blog-header-logo text-dark" href="../blog/index.php"><h1>Usuario</h1></a>
-      </div>
-        <div class="row" style="justify-content: center;">
-            <div class="col-sm-6 col-md-6" style="margin-top: 5%;">
-                <form class="shadow-lg bg-white mb-5" style="padding: 20px; border-radius:20px;"
-                    action="../databases/editarCategoria.php" method="POST">
-                       <h2 class="text-center mb-2">Editar Usuario</h2>
-                       <div class="mb-3">
-                        
-                        <label for="usurio" class="form-label">Nombre completo</label>
-                        <input type="text" class="form-control" name="usurio" id="usurio" required>
-                    </div>
-                    <div class="mb-3">
-                        
-                        <label for="usuario" class="form-label">Username</label>
-                        <input type="text" class="form-control" name="usuario" id="usuario" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Clave</label>
-                        <input type="password" class="form-control" name="password" id="password" required>
-                    </div>
-
-                    <div class="mb-3">
-                    <label for="direccion" class="form-label">Direccion</label>
-                    <input type="text" class="form-control" name="direccion" id="direccion" required>            
-                    </div>
-
+    <!-- contenedor principal -->
+    <div class="container">
+        <!-- contenedor de filas -->
+        <div class="row" style="justify-content: center; margin-top:5%;">
+            <!-- contendores de columnas -->
+            <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
+                <form action="../databases/editarUsuario.php" class="bg-white bg-opacity-75 shadow-lg p-3 mb-5 bg-body rounded" method="POST">
                     <center>
-                        <button type="submit" class="btn btn-primary">Editar</button>
+                        <img class="rounded-circle" width="100px" height="100px" src="https://utacapulco.edu.mx/images/logo-uta.png" alt="">
                     </center>
-
+                    <input type="hidden" name="id" id="id" value="<?php echo $id;?>">
+                    <div class="mb-3">
+                        <label for="usuario" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $nombre; ?>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="usuario" class="form-label">Nickname</label>
+                        <input type="text" class="form-control" name="usuario" id="usuario" value="<?php echo $username; ?>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="usuario" class="form-label">Dirrección</label>
+                        <input type="text" class="form-control" name="direccion" id="direccion" value="<?php echo $direccion; ?>" required>
+                    </div>
             </div>
+            <center>
+                <button type="submit" class="btn btn-primary">Ediar</button>
+            </center>
+          
+            </form>
         </div>
     </div>
-    
-</form>
-
+    </div>
+    <!-- scripts  -->
     </div>
     </div>
-    </div>
-    </div>
-
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>

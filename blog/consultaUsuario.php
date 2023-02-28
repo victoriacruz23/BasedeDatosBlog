@@ -1,3 +1,6 @@
+<?php
+include('validaradmin.php')
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,20 +9,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta de Usuarios</title>
      <!-- CSS only -->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
 </head>
 <body>
 <body style="background: linear-gradient(to right,#5695EC ,#3BEEAF);">
+<?php
+    include('menu.php');
+?>
     <div class="container" style="justify-content: center;">
     <div class="col-12 text-center">
         <a class="blog-header-logo text-dark" href="../blog/index.php"><h1>Usuarios</h1></a>
       </div>
         <div class="row" style="justify-content: center;">
-            <div class="col-8" style="margin-top:5%;">
+            <div class="col-12" style="margin-top:5%;">
                 <div class="table-responsive bg-white shadow-lg"  style="padding: 20px; border-radius:20px;">
                 <h2 class="text-center mb-2">Consulta de Usuarios</h2>
                 <table id="example" class="table  table-striped table-hover" style="width:100%">
@@ -83,18 +87,9 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 </body>
-<script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json'
-                }
-            });
-        });
-    </script>
-
     <script>
 
         function eliminarUsuario(eliminar) {
@@ -118,7 +113,7 @@
 
         function editarUsuario(eliminar) {
             Swal.fire({
-               title: `¿Desea editar el usuario $`,
+               title: `¿Desea editar el usuario`,
                 text: "Esto podria generar problemas en el sistema",
                 icon: 'warning',
                 showCancelButton: true,

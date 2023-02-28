@@ -5,8 +5,7 @@ session_destroy();
 echo "
 <script>
     alert('La sesion fue cerrada');
-    window.location = '../loguin.php';
+    window.location = '../index.php';
 </script>";
 
 ?>
-

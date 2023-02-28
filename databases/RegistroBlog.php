@@ -1,23 +1,22 @@
 <?php
 require_once ("conexion.php");
+$id= $_POST["id"];
 $categoria= $_POST["categoria"];
-$fecha = $_POST["Fecha"];
 $titulo = $_POST["Titulo"];
+$Descripcion = $_POST["Descripcion"];
 
-$img = $_FILES["formFileSm"];
-$carpeta= '../document/img/';
-
-if(!is_dir($carpeta)){
-    mkdir($carpeta);
+$insert= $conexion ->query("INSERT INTO blog(id_usuario, id_categoria, titulo, descripcion) VALUES ('$id','$categoria','$titulo','$Descripcion')");
+if($insert){
+    echo '<script>
+    alert("Blog registrado");
+    window.location="../blog/creablock.php"
+    </script>';
+}else{
+    echo '<script>
+    alert("Error: Blog no registrada");
+    window.location="../blog/creablock.php"
+    </script>';
 }
-
-$nombreImg = md5(uniqid(rand(), true)).".jpg";
-// http://localhost/webserviceprovedor/
-$nom_ruta = "http://localhost/webserviceprovedor"."/document/img/".$nombreImg;
-move_uploaded_file($img["tmp_name"],$carpeta . $nombreImg);
-$consu = $conexion->query("INSERT INTO `imagen`(`ruta`) VALUES ('$nom_ruta')");
-
-$insert="INSERT INTO "
 
 
 

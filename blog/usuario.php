@@ -43,7 +43,7 @@
                     <div class="mb-3">
                     <label for="direccion" class="form-label">Direccion</label>
                         <input type="text" class="form-control" name="direccion" id="direccion" required>            
-                                </div>
+                    </div>
 
                     <center>
                         <button type="submit" class="btn btn-primary">Registrar</button>

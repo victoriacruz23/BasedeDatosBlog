@@ -1,3 +1,10 @@
+<?php
+session_start();
+// evaluamos si ela variable sesion existe
+if (isset($_SESSION["usuario"])) {
+    header("Location: blog/index.php ");  
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +16,7 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
+
 <body style="background: linear-gradient(to right,#5695EC ,#3BEEAF);">
     <!-- contenedor principal -->
     <div class="container">
@@ -18,7 +26,7 @@
         <div class="row" style="justify-content: center; margin-top:5%;">
 
             <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
-                <form action="blog/index.php" class="bg-white bg-opacity-75 shadow-lg p-3 mb-5 bg-body rounded" method="POST">
+                <form action="databases/login.php" class="bg-white bg-opacity-75 shadow-lg p-3 mb-5 bg-body rounded" method="POST">
                     <center>
                         <img class="rounded-circle" width="100px" height="100px" src="https://utacapulco.edu.mx/images/logo-uta.png" alt="">
                     </center>
@@ -37,9 +45,11 @@
                             <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
                         </center>
                 </form>
-                </form>
+                <center>
+                <a href="RegistroUser.php" class="text-decoration-none text-dark">Registarme</a>
+                </center>
                 <!-- crear cuenta -->
-                <a href="RegistroUser.php">Registarme</a>
+
             </div>
             <p class="text-center text-gray mt-3 mx-4">
                 &copy;2022 BLOG UTA. cme Corp. Derechos reservados.

@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.encabezado{
+    background: #00ffb3;
+
+}
+.encabezado nav{
+    display: flex;
+    justify-content: space-around;
+}
+
+.encabezado nav ul{
+    background: hsl(253, 100%, 50%);
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px;
+
+}
+a{
+    text-decoration: none;
+    font-size: 20px;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    color: white;
+    padding: 10px 30px;
+    display: block;
+    
+
+}
+a:hover{
+    background: hsl(0, 100%, 68%);
+
+}
+.encabezado nav ul li ul{
+    display: flex;
+    flex-direction: column;
+}
+.encabezado nav ul li ul{
+        position: absolute;
+        background: hsl(0, 100%, 68%);
+}
+
+.encabezado nav ul li ul li{
+    width: 180px;
+    position: relative;
+
+}
+.encabezado nav ul li ul li ul{
+    top: 0;
+    left: 180px;
+    position: absolute;
+
+}
+.encabezado nav ul li ul{
+    display: none;
+}
+.encabezado nav ul li:hover > ul{
+    display: block;
+    }
+img{
+        background: url(img/logopro.jpeg) no-repeat;
+        background-size: cover;
+        background-position:center center;
+        height: calc(100vh - 95px);
+        height: 55px;
+        width: 90px;
+    
+      }
+   
+    .div-imagen-fondo {
+      background-image: url(img/blogpro.jpeg);
+    }
