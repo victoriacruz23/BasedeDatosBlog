@@ -25,12 +25,15 @@ if (empty($_GET['id'])) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
+    <?php
+     include ('menu.php');
+    ?>
     <div class="container">
         <?php
+       
         include('../databases/conexion.php');
         $consulta = $conexion->query("SELECT * FROM blog INNER JOIN usuario ON  blog.id_usuario = usuario.id_usuario WHERE id_blog ='$blog_id' ");
         while ($row = $consulta->fetch_assoc()) {
@@ -60,13 +63,13 @@ if (empty($_GET['id'])) {
                             <div class="row mb-3">
                                 <label for="fecha" class="col-sm-2 col-form-label">Titulo:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm" value="<?php echo $row["titulo"]; ?>" id="Titulo" name="Titulo" required>
+                                    <input type="text" class="form-control form-control-sm" value="<?php echo $row["titulo"]; ?>" maxlength="20" id="Titulo" name="Titulo" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="Descripcion" class="col-sm-2 col-form-label">Descripción: </label>
                                 <div class="col-sm-10 form-floating">
-                                    <textarea class="form-control form-control-sm" id="Descripción" name="Descripcion" style="height: 150px;" required><?php echo $row["descripcion"]; ?></textarea>
+                                    <textarea class="form-control form-control-sm" id="Descripción" name="Descripcion" maxlength="500" style="height: 150px;" required><?php echo $row["descripcion"]; ?></textarea>
                                 </div>
                             </div>
                             <center>
@@ -132,7 +135,6 @@ if (empty($_GET['id'])) {
         ?>
 
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 </body>

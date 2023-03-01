@@ -33,7 +33,7 @@ if (isset($_SESSION["usuario"])) {
       while ($row = $consulta->fetch_assoc()) {
       ?>
         <div class="">
-          <div class="card text-center">
+          <div class="card text-center" style="height: 400px;">
             <div class="card-header">
               <?php
               $rowcat = $row['id_categoria'];
@@ -47,7 +47,6 @@ if (isset($_SESSION["usuario"])) {
               <h5 class="card-title"><?php echo $row["titulo"] ?></h5>
               <p class="card-text">Autor: <?php echo $row["descripcion"] ?></p>
               <a href="verblog.php?id=<?php echo $row["id_blog"] ?>" class="btn btn-primary">Ver Blog</a>
-              <a href="editarblock.php" class="btn btn-success">Editar Blog</a>
             </div>
             <div class="card-footer text-muted">
             <?php echo $row["fecha_creacion"] ?>

@@ -29,7 +29,7 @@ CREATE TABLE blog (
   id_categoria INT(11) NOT NULL,
   fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   titulo VARCHAR(20),
-  descripcion VARCHAR(200),
+  descripcion VARCHAR(500),
   PRIMARY KEY (id_blog),
   CONSTRAINT blog_FK  FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria),
   CONSTRAINT usuario_FK  FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)

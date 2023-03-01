@@ -38,7 +38,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="creablock.php">Crear Blogs</a></li>
-            <li><a class="dropdown-item" href="consultaBlog.php">Consulta Blogs</a></li>
+          
           </ul>
         </li>
         

@@ -31,7 +31,7 @@ include('validar.php');
                                 <label for="categoria" class="col-sm-2 col-form-label">Categoria:</label>
                                 <div class="col-sm-10">
                                     <select class="form-select form-select-sm mb-3" id="categoria" name="categoria" aria-label=".form-select-sm example" style="font-size: 15px;" required>
-                                        <option selected>Elige una categoria</option>
+                                        <option value="0">Elige una categoria</option>
                                         <?php
                                         include('../databases/conexion.php');
                                         $categoris = $conexion->query("SELECT * FROM categoria");
@@ -48,14 +48,13 @@ include('validar.php');
                             <div class="row mb-3">
                                 <label for="fecha" class="col-sm-2 col-form-label">Titulo:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="Titulo" name="Titulo" required>
+                                    <input type="text" maxlength="20" class="form-control" id="Titulo" name="Titulo" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="Descripcion" class="col-sm-2 col-form-label">Descripción: </label>
                                 <div class="col-sm-10 form-floating">
-                                    <textarea class="form-control" id="Descripción" name="Descripcion" style="height: 150px;" required></textarea>
-                                    <label for="floatingTextarea" style="margin-left: 10px;">Descripción</label>
+                                    <textarea class="form-control" id="Descripción" name="Descripcion" style="height: 150px;" maxlength="500" required></textarea>
                                 </div>
                             </div>
                             <center>

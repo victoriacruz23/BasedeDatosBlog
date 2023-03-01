@@ -5,6 +5,13 @@ $categoria= $_POST["categoria"];
 $titulo = $_POST["Titulo"];
 $Descripcion = $_POST["Descripcion"];
 
+if($categoria == 0){
+    echo '<script>
+    alert("Selecciona una categoria");
+    window.location="../blog/creablock.php"
+    </script>';
+exit;
+}
 $insert= $conexion ->query("INSERT INTO blog(id_usuario, id_categoria, titulo, descripcion) VALUES ('$id','$categoria','$titulo','$Descripcion')");
 if($insert){
     echo '<script>
@@ -17,7 +24,6 @@ if($insert){
     window.location="../blog/creablock.php"
     </script>';
 }
-
 
 
 ?>
