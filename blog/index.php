@@ -27,12 +27,12 @@ if (isset($_SESSION["usuario"])) {
   include('../databases/conexion.php');
   ?>
   <div class="container">
-    <div class="row" style="justify-content: center; margin-top:2%;">
+    <div  class="row row-cols-1 row-cols-md-2 g-2" style="justify-content: center; margin-top:2%;">
       <?php
       $consulta = $conexion->query("SELECT * FROM blog INNER JOIN usuario ON  blog.id_usuario = usuario.id_usuario ");
       while ($row = $consulta->fetch_assoc()) {
       ?>
-        <div class="col-6">
+        <div class="">
           <div class="card text-center">
             <div class="card-header">
               <?php
@@ -47,6 +47,7 @@ if (isset($_SESSION["usuario"])) {
               <h5 class="card-title"><?php echo $row["titulo"] ?></h5>
               <p class="card-text">Autor: <?php echo $row["descripcion"] ?></p>
               <a href="verblog.php?id=<?php echo $row["id_blog"] ?>" class="btn btn-primary">Ver Blog</a>
+              <a href="editarblock.php" class="btn btn-success">Editar Blog</a>
             </div>
             <div class="card-footer text-muted">
             <?php echo $row["fecha_creacion"] ?>
