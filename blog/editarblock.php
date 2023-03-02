@@ -42,12 +42,13 @@ if (empty($_GET['id'])) {
                 <div class="row">
                     <div class="col-12">
                         <form action="../databases/updateblog.php" method="post" class="bg-white bg-opacity-75 shadow-lg p-3 mb-5 bg-body rounded">
-                            <h4 class="text-center">Editar el blog <?php echo $row["titulo"]; ?></h4>
+                        <input type="hidden" name="id_blog" value="<?php echo $row["id_blog"]; ?>">    
+                        <h4 class="text-center">Editar el blog <?php echo $row["titulo"]; ?></h4>
                             <div class="row mb-3">
-                                <label for="categoria" class="col-sm-2 col-form-label">Categoria:</label>
+                                <label for="categoria" class="col-sm-2 col-form-label">Categoria:  </label>
                                 <div class="col-sm-10">
                                     <select class="form-select form-select-sm mb-3" id="categoria" name="categoria" aria-label=".form-select-sm example" style="font-size: 15px;" required>
-                                        <option selected>Elige una categoria</option>
+                                        <option value="0">Elige una categoria</option>
                                         <?php
                                         $categoris = $conexion->query("SELECT * FROM categoria");
                                         while ($row1 = $categoris->fetch_assoc()) {

@@ -27,7 +27,7 @@ if (isset($_SESSION["usuario"])) {
   include('../databases/conexion.php');
   ?>
   <div class="container">
-    <div  class="row row-cols-1 row-cols-md-2 g-2" style="justify-content: center; margin-top:2%;">
+    <div class="row row-cols-1 row-cols-md-2 g-2" style="justify-content: center; margin-top:2%;">
       <?php
       $consulta = $conexion->query("SELECT * FROM blog INNER JOIN usuario ON  blog.id_usuario = usuario.id_usuario ");
       while ($row = $consulta->fetch_assoc()) {
@@ -37,8 +37,8 @@ if (isset($_SESSION["usuario"])) {
             <div class="card-header">
               <?php
               $rowcat = $row['id_categoria'];
-              $consiltacat=  $conexion->query("SELECT * FROM categoria WHERE id_categoria ='$rowcat'");
-              while($dtcat = $consiltacat->fetch_assoc()){
+              $consiltacat =  $conexion->query("SELECT * FROM categoria WHERE id_categoria ='$rowcat'");
+              while ($dtcat = $consiltacat->fetch_assoc()) {
                 echo $dtcat["descripcion"];
               }
               ?>
@@ -46,10 +46,17 @@ if (isset($_SESSION["usuario"])) {
             <div class="card-body">
               <h5 class="card-title"><?php echo $row["titulo"] ?></h5>
               <p class="card-text">Autor: <?php echo $row["descripcion"] ?></p>
+              <?php
+              if ($_SESSION["usuario"]['id_usuario'] == $row['id_usuario']) {
+              ?>
+                <p class="card-text"><a href="editarblock.php?id=<?php echo $row['id_blog'] ?>" class="btn btn-warning">Editar Blog</a> </p>
+              <?php
+              }
+              ?>
               <a href="verblog.php?id=<?php echo $row["id_blog"] ?>" class="btn btn-primary">Ver Blog</a>
             </div>
             <div class="card-footer text-muted">
-            <?php echo $row["fecha_creacion"] ?>
+              <?php echo $row["fecha_creacion"] ?>
             </div>
           </div>
         </div>

@@ -1,3 +1,7 @@
+<?php
+include('validaradmin.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +19,9 @@
     <link rel="stylesheet" href="../css/comentario.css">
 </head>
 <body>
+    <?php
+include('menu.php');
+    ?>
 <div class="container" style="justify-content: center;">
     <div class="col-12 text-center">
         <a class="blog-header-logo text-dark" href="../blog/index.php"><h1>Comentarios</h1></a>
