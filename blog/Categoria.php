@@ -32,7 +32,7 @@ include('validaradmin.php')
                     <div class="mb-3">
                         <input type="hidden" name="ruta" value="<?php echo basename(__FILE__); ?>">
                         <label for="categoria" class="form-label">Nombre de la categoria</label>
-                        <input type="text" class="form-control" name="categoria" id="categoria" required>
+                        <input type="text" class="form-control" placeholder="Nombre categoria.." name="categoria" id="categoria" required>
                     </div>
                     <center>
                         <button type="submit" class="btn btn-primary">Registrar</button>

@@ -1,4 +1,6 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <?php
+include('fuction.php');
 require_once("conexion.php");
 // print_r($_POST);
 $usuario = $_POST ["usuario"];
@@ -19,26 +21,30 @@ if($consulta->num_rows == 1){
         // sesiones
         session_start();
         $_SESSION["usuario"] = $datoSession;
-        echo "<script>
-        alert ('Acceso correcto !Conexión Exitosa!');
-            window.location = '../blog/index.php';
-        </script>";
+        alerta('Acceso correcto !Conexión Exitosa!','success','../blog/index.php');
+        // echo "<script>
+        // alert ('Acceso correcto !Conexión Exitosa!');
+        //     window.location = '../blog/index.php';
+        // </script>";
         exit;
    
     }else{
-        echo "
-        <script>
-        alert('Contraseña incorrecta');
-        window.location = '../index.php';
-        </script>
-        ";
+        alerta('Contraseña incorrecta','error','../index.php');
+        // echo "
+        // <script>
+        // alert('Contraseña incorrecta');
+        // window.location = '../index.php';
+        // </script>
+        // ";
     }
 }else{
-    echo "
-    <script>
-    alert('El usuario no existe');
-    window.location = '../index.php';
-    </script>
-    ";
+    alerta('El usuario no existe','error','../index.php');
+
+    // echo "
+    // <script>
+    // alert('El usuario no existe');
+    // window.location = '../index.php';
+    // </script>
+    // ";
 }
 ?>
