@@ -34,7 +34,7 @@ if (empty($_GET['id'])) {
     include('../databases/conexion.php');
     ?>
     <div class="container">
-        <div class="row" style="justify-content: center; margin-top:2%;">
+        <div class="row" style="justify-content: center; margin-top:2%; ">
             <?php
             $consulta = $conexion->query("SELECT * FROM blog INNER JOIN usuario ON  blog.id_usuario = usuario.id_usuario WHERE id_blog ='$blog_id' ");
             while ($row = $consulta->fetch_assoc()) {
@@ -55,43 +55,103 @@ if (empty($_GET['id'])) {
                             <p class="card-text"><small class="text-muted"><?php echo $row["fecha_creacion"] ?></small></p>
                             <?php
                             if ($_SESSION["usuario"]['id_usuario'] == $row['id_usuario']) {
-                            ?>           
-                            <p class="card-text"><a href="editarblock.php?id=<?php echo $row['id_blog'] ?>" class="btn btn-warning">Editar Blog</a> </p>
+                            ?>
+                                <p class="card-text"><a href="editarblock.php?id=<?php echo $row['id_blog'] ?>" class="btn btn-warning">Editar Blog</a> </p>
                             <?php
                             }
-                            ?>           
-                        </div>
-                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <?php
-                                $idcarr = $row['id_blog'];
-                                $consultacarr = $conexion->query("SELECT * FROM imagen WHERE id_blog = '$idcarr'");
-                                if ($consultacarr->num_rows != 0) {
-                                    while ($row1 = $consultacarr->fetch_assoc()) {
-                                ?>
+                            ?>
+                            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <?php
+                                    $idcarr = $row['id_blog'];
+                                    $consultacarr = $conexion->query("SELECT * FROM imagen WHERE id_blog = '$idcarr'");
+                                    if ($consultacarr->num_rows != 0) {
+                                        while ($row1 = $consultacarr->fetch_assoc()) {
+                                    ?>
+                                            <div class="carousel-item active">
+                                                <img src="../docs/img/<?php echo $row1['ruta']; ?>" height="400px" width="100%" class="d-block" alt="...">
+                                            </div>
+                                        <?php
+                                        }
+                                    } else {
+                                        ?>
                                         <div class="carousel-item active">
-                                            <img src="../docs/img/<?php echo $row1['ruta']; ?>" height="400px" width="100%" class="d-block" alt="...">
+                                            <img src="../img/vegeta.jpg" height="400px" width="100%" class="d-block" alt="...">
                                         </div>
                                     <?php
                                     }
-                                } else {
                                     ?>
-                                    <div class="carousel-item active">
-                                        <img src="../img/vegeta.jpg" height="400px" width="100%" class="d-block" alt="...">
-                                    </div>
-                                <?php
-                                }
-                                ?>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
                         </div>
+                        <div class="card-footer ">
+                            <!-- form entradas  -->
+                            <h1 class="text-center text-muted">Seccion Comentarios</h1>
+                            <form action="../databases/registroentrada.php" method="post">
+                                <div class="form-group mb-2">
+                                    <input type="hidden" name="idblog" value="<?php echo $row['id_blog']; ?>">
+                                    <label for="descripcion">Entrada:</label>
+                                    <textarea class="form-control form-control-sm" id="descripcion" rows="4" name="descripcion" maxlength="100" required></textarea>
+                                </div>
+                                <center>
+                                    <button type="submit" class="btn btn-primary">Crear entrada</button>
+                                </center>
+                            </form>
+                            <br>
+                            <?php
+                            $consultaentrada = $conexion->query("SELECT * FROM entrada ORDER BY id_entrada DESC");
+                            if ($consultaentrada->num_rows > 0) {
+                                while ($rowentr = $consultaentrada->fetch_assoc()) {
+                                    // crear comentarios a la entrada
+                            ?>
+                                    <div class="card mb-3">
+                                        <div class="card-header text-white" style="background-color: #563D7C;">
+                                            <?php echo $rowentr['texto_entrada']; ?>
+                                        </div>
+                                        <div class="card-body">
+                                            <form action="../databases/crearcomenario.php" method="post">
+                                                <div class="form-group mb-2">
+                                                    <input type="hidden" name="idblog" value="<?php echo $row['id_blog']; ?>">
+                                                    <input type="hidden" name="identrada" value="<?php echo $rowentr['id_entrada']; ?>">
+                                                    <label for="comentario">Crea un Comentario:</label>
+                                                    <textarea class="form-control form-control-sm" id="comentario" rows="2" name="comentario" maxlength="100" required></textarea>
+                                                </div>
+                                                <center>
+                                                    <button type="submit" class="btn btn-warning">Comentario</button>
+                                                </center>
+                                            </form>
+                                            <blockquote class="blockquote mb-0">
+                                                <p>Comentarios</p>
+                                                <?php
+                                                $consutacomentario = $conexion->query('SELECT * FROM comentario ORDER BY fecha_comentario DESC');
+                                                if ($consutacomentario->num_rows > 0) {
+                                                    while ($rowcoment = $consutacomentario->fetch_assoc()) {
+                                                        if ($rowcoment['id_entrada'] == $rowentr['id_entrada']) {
+
+                                                ?>
+                                                            <footer class="blockquote-footer"><?php echo $rowcoment['comentario']; ?> <cite title="Source Title">  Creado <?php echo $rowcoment['fecha_comentario']; ?></cite> </footer>
+                                                <?php
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </div>
+
                     </div>
                 </div>
         </div>

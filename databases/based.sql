@@ -48,6 +48,7 @@ CREATE TABLE entrada(
   PRIMARY KEY (id_entrada),
   CONSTRAINT entrada_FK FOREIGN KEY (id_blog) REFERENCES blog(id_blog)
 );
+
 CREATE TABLE comentario(
   id_comentario INT(11) NOT NULL AUTO_INCREMENT,
   comentario VARCHAR(100),

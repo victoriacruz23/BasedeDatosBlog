@@ -44,6 +44,7 @@ if (empty($_GET['id'])) {
                         <form action="../databases/updateblog.php" method="post" class="bg-white bg-opacity-75 shadow-lg p-3 mb-5 bg-body rounded">
                         <input type="hidden" name="id_blog" value="<?php echo $row["id_blog"]; ?>">    
                         <h4 class="text-center">Editar el blog <?php echo $row["titulo"]; ?></h4>
+                        <h5 class="text-center"><a href="verblog.php?id=<?php echo $row["id_blog"]; ?>" class="btn btn-primary">Ver <?php echo $row["titulo"]; ?></a> </h5>
                             <div class="row mb-3">
                                 <label for="categoria" class="col-sm-2 col-form-label">Categoria:  </label>
                                 <div class="col-sm-10">
